@@ -135,7 +135,11 @@ async function consturctServer(moduleDefs) {
   const app = express()
   const { CORS_ALLOW_ORIGIN } = process.env
   app.set('trust proxy', true)
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://lovezone.love");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
   /**
    * CORS & Preflight request
    */
